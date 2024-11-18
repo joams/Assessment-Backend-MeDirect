@@ -1,0 +1,503 @@
+{
+	"id": "db70214c-6470-4f80-a72e-08996c1acec8",
+	"name": "Backend Assessment",
+	"timestamp": "2024-11-18T12:59:29.215Z",
+	"collection_id": "27291985-24b4cdc3-01da-48d7-8d1f-7cca7cf23d16",
+	"folder_id": 0,
+	"environment_id": "27291985-5291e7d0-fe60-4f4b-b5d1-1777907d0188",
+	"totalPass": 21,
+	"delay": "2",
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-11-18T12:58:08.490Z",
+	"totalFail": 5,
+	"results": [
+		{
+			"id": "2bcaa8d5-13ee-42b0-8d94-73927672e6cd",
+			"name": "GET - List Activities",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+			"time": 362,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is an array": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				362
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is an array": true
+				}
+			]
+		},
+		{
+			"id": "f7359820-2ac0-4b26-bfdd-c03b1f1aaebb",
+			"name": "POST - Create Activity",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+			"time": 61,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has an ID": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has an ID": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				61
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has an ID": true
+				}
+			]
+		},
+		{
+			"id": "e7fc5d3d-78f8-46bb-b1f3-f4f642898e9e",
+			"name": "GET - Get Activity by ID",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/Activities/1",
+			"time": 58,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response contains activity details": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response contains activity details": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				58
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response contains activity details": false
+				}
+			]
+		},
+		{
+			"id": "fee02cf2-4cc7-4ebe-a047-9135adf37e19",
+			"name": "PUT - Update Activity",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/Activities/1",
+			"time": 286,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Activity is updated": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Activity is updated": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				286
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Activity is updated": true
+				}
+			]
+		},
+		{
+			"id": "18bb44d6-2174-4d81-93be-f49aa20bcc3b",
+			"name": "DELETE - Delete Activity",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/Activities/1",
+			"time": 96,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Activity is deleted": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Activity is deleted": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				96
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Activity is deleted": false
+				}
+			]
+		},
+		{
+			"id": "a8346392-82b8-46ef-b039-3899989bd958",
+			"name": "POST - Create Author",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/Authors",
+			"time": 162,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has a valid ID": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has a valid ID": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				162
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has a valid ID": true
+				}
+			]
+		},
+		{
+			"id": "407fc76d-57e6-4542-a8b3-b18d8adc9e9f",
+			"name": "POST - Create Book",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/Books",
+			"time": 291,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has a valid ID": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has a valid ID": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				291
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has a valid ID": true
+				}
+			]
+		},
+		{
+			"id": "2eaa2358-0dd8-41dc-9826-f442c40d0470",
+			"name": "POST - Create CoverPhoto",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos",
+			"time": 62,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has a valid ID": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has a valid ID": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				62
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has a valid ID": true
+				}
+			]
+		},
+		{
+			"id": "9c07d815-0149-48ff-8891-ce9f2bde2869",
+			"name": "GET - Verify CoverPhoto and Book Relationship",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos/books/covers/1",
+			"time": 63,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is a non-empty array containing the correct book ID": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is a non-empty array containing the correct book ID": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				63
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is a non-empty array containing the correct book ID": false
+				}
+			]
+		},
+		{
+			"id": "930446d0-0a64-4dae-8845-14d2f4e7d1ae",
+			"name": "POST - Create User",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/Users",
+			"time": 72,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has a valid user ID": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has a valid user ID": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				72
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has a valid user ID": true
+				}
+			]
+		},
+		{
+			"id": "e0faaffd-9a20-4335-9ab5-3bf805318a0b",
+			"name": "PUT - Update User Data",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+			"time": 65,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"User data updated successfully": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User data updated successfully": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				65
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"User data updated successfully": false
+				}
+			]
+		},
+		{
+			"id": "4518559f-eba7-45c4-97e6-aaf9db5fe90e",
+			"name": "POST - Create Activity for User",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+			"time": 60,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response has a valid activity ID": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has a valid activity ID": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				60
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response has a valid activity ID": true
+				}
+			]
+		},
+		{
+			"id": "f87964eb-5e0d-4e83-9cfb-f1e6c9f50b1d",
+			"name": "GET - Verify User's Activities",
+			"url": "https://fakerestapi.azurewebsites.net/api/v1/Activities?userId=1",
+			"time": 65,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"User activities include the created activity": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User activities include the created activity": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				65
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"User activities include the created activity": false
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1703,
+	"collection": {
+		"requests": [
+			{
+				"id": "2bcaa8d5-13ee-42b0-8d94-73927672e6cd",
+				"method": "GET"
+			},
+			{
+				"id": "f7359820-2ac0-4b26-bfdd-c03b1f1aaebb",
+				"method": "POST"
+			},
+			{
+				"id": "e7fc5d3d-78f8-46bb-b1f3-f4f642898e9e",
+				"method": "GET"
+			},
+			{
+				"id": "fee02cf2-4cc7-4ebe-a047-9135adf37e19",
+				"method": "PUT"
+			},
+			{
+				"id": "18bb44d6-2174-4d81-93be-f49aa20bcc3b",
+				"method": "GET"
+			},
+			{
+				"id": "a8346392-82b8-46ef-b039-3899989bd958",
+				"method": "POST"
+			},
+			{
+				"id": "407fc76d-57e6-4542-a8b3-b18d8adc9e9f",
+				"method": "POST"
+			},
+			{
+				"id": "2eaa2358-0dd8-41dc-9826-f442c40d0470",
+				"method": "POST"
+			},
+			{
+				"id": "9c07d815-0149-48ff-8891-ce9f2bde2869",
+				"method": "GET"
+			},
+			{
+				"id": "930446d0-0a64-4dae-8845-14d2f4e7d1ae",
+				"method": "POST"
+			},
+			{
+				"id": "e0faaffd-9a20-4335-9ab5-3bf805318a0b",
+				"method": "POST"
+			},
+			{
+				"id": "4518559f-eba7-45c4-97e6-aaf9db5fe90e",
+				"method": "POST"
+			},
+			{
+				"id": "f87964eb-5e0d-4e83-9cfb-f1e6c9f50b1d",
+				"method": "GET"
+			}
+		]
+	}
+}
