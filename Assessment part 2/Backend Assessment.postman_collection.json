@@ -1,0 +1,703 @@
+{
+	"info": {
+		"_postman_id": "24b4cdc3-01da-48d7-8d1f-7cca7cf23d16",
+		"name": "Backend Assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27291985"
+	},
+	"item": [
+		{
+			"name": "CRUD Tests for Activities",
+			"item": [
+				{
+					"name": "GET - List Activities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"    pm.expect(pm.response.json()).to.be.an('array');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Create Activity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Response has an ID\", function () {\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"});\r",
+									"pm.environment.set(\"activityId\", jsonData.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"New test activity\",\r\n  \"dueDate\": \"2024-12-31T23:59:59Z\",\r\n  \"completed\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Get Activity by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response contains activity details\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('id', parseInt(pm.environment.get(\"activityId\")));\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities/1",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Update Activity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Activity is updated\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('completed', true);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Updated test activity\",\r\n  \"dueDate\": \"2025-01-15T12:00:00Z\",\r\n  \"completed\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities/1",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Delete Activity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Activity is deleted\", function () {\r",
+									"    pm.expect(pm.response.text()).to.eql('');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities/1",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Integration Tests for Authors, Books, and CoverPhotos\"",
+			"item": [
+				{
+					"name": "POST - Create Author",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// Check if the response is an array\r",
+									"if (Array.isArray(jsonData)) {\r",
+									"    pm.test(\"Response is an array and has at least one item\", function () {\r",
+									"        pm.expect(jsonData.length).to.be.greaterThan(0);\r",
+									"        pm.expect(jsonData[0]).to.have.property('id'); // Check if the first item has an 'id' property\r",
+									"        pm.environment.set(\"authorId\", jsonData[0].id); // Set the 'id' of the first item\r",
+									"    });\r",
+									"} else {\r",
+									"    // Handle if the response is a single object\r",
+									"    pm.test(\"Response has a valid ID\", function () {\r",
+									"        pm.expect(jsonData).to.have.property('id');\r",
+									"    });\r",
+									"    pm.environment.set(\"authorId\", jsonData.id);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idBook\": 1,\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/Authors",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Create Book",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.environment.set(\"bookId\", jsonData.id);\r",
+									"pm.test(\"Response has a valid ID\", function () {\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Integration Test Book\",\r\n  \"description\": \"This is a test book for integration.\",\r\n  \"pageCount\": 100,\r\n  \"excerpt\": \"Sample excerpt\",\r\n  \"publishDate\": \"2024-12-31T00:00:00Z\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/Books",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Create CoverPhoto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.environment.set(\"coverPhotoId\", jsonData.id);\r",
+									"pm.test(\"Response has a valid ID\", function () {\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idBook\": {{bookId}},\r\n  \"url\": \"https://example.com/coverphoto.jpg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"CoverPhotos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Verify CoverPhoto and Book Relationship",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"console.log(response);\r",
+									"\r",
+									"pm.test(\"Response is a non-empty array containing the correct book ID\", function () {\r",
+									"    pm.expect(response).to.be.an('array').and.to.not.be.empty;\r",
+									"\r",
+									"    const hasCorrectBookId = response.some(item => item.idBook === parseInt(pm.environment.get(\"bookId\")));\r",
+									"    pm.expect(hasCorrectBookId).to.be.true;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos/books/covers/1",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"CoverPhotos",
+								"books",
+								"covers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "E2E Tests for User and Activities",
+			"item": [
+				{
+					"name": "POST - Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.environment.set(\"userId\", jsonData.id);\r",
+									"pm.test(\"Response has a valid user ID\", function () {\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"testuser\",\r\n  \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/Users",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Update User Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"User data updated successfully\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property('userName', \"updateduser\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"User Activity\",\r\n  \"dueDate\": \"2024-12-31T23:59:59Z\",\r\n  \"completed\": false,\r\n  \"userId\": {{userId}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Create Activity for User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.environment.set(\"activityId\", jsonData.id);\r",
+									"pm.test(\"Response has a valid activity ID\", function () {\r",
+									"    pm.expect(jsonData).to.have.property('id');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"User Activity\",\r\n  \"dueDate\": \"2024-12-31T23:59:59Z\",\r\n  \"completed\": false,\r\n  \"userId\": {{userId}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Verify User's Activities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"console.log(\"Full Response:\", jsonData);\r",
+									"console.log(\"Expected activityId:\", pm.environment.get(\"activityId\"));\r",
+									"\r",
+									"// Check if any activity matches the stored 'activityId'\r",
+									"pm.test(\"User activities include the created activity\", function () {\r",
+									"    const activityId = parseInt(pm.environment.get(\"activityId\"));\r",
+									"    const hasActivity = jsonData.some(activity => {\r",
+									"        console.log(\"Checking activity:\", activity);\r",
+									"        return activity.id === activityId;\r",
+									"    });\r",
+									"\r",
+									"    pm.expect(hasActivity).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities?userId=1",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Performance Tests for Activities",
+			"item": [
+				{
+					"name": "GET - Load Test Activities\"",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+							"protocol": "https",
+							"host": [
+								"fakerestapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Activities"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
